@@ -1,0 +1,37 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.blue{
+    background-color: #159CC7;
+    height: 93vh;
+    display: flex;
+}
+.blue .login{
+    background-color: white;
+    height: 35%;
+    margin: auto;
+}
+.blue .login .btn{
+    width: fit-content;
+}
+.blue .login h5{
+    line-height: 2.2;
+    color: #747474 ;
+    margin: 0px auto;
+    width: fit-content;
+    font-weight: 300;
+    font-size: 25px;
+}
+.white{
+    background-color: white;
+    height: 7vh;
+    display: flex;
+}
+.white span{
+    color: #747474;
+    font-size: 15px;
+    font-family: 'Roboto';
+    margin: auto;
+}

@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{{ url_for('static' , filename = 'Css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static' , filename = 'Css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static' , filename = 'Css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static' , filename = 'Css/style.css') }}">
+</head>
+<body>
+        {% with m = get_flashed_messages()%}
+        {% if m %}
+        {% for message in m %}
+        <div class="alert alert-danger" style="width:fit-content; height : fit-content; margin: 0px auto">
+        {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    <div class="blue col-sm-12">
+        <div class="login col-sm-4">
+            <h5>Login</h5>
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                  <label for="exampleInputEmail1">E-mail</label>
+               {{ form.email(class='form-control' , id='exampleInputEmail1' ,placeholder='Enter email') }}
+                  <small id="emailHelp" class="form-text text-muted">Your university email</small>
+                </div>
+                {{ form.submit(style="text-style:none; color : white" ,class="btn btn-primary") }}
+              </form>
+        </div>
+    </div>
+    <div class="white col-sm-12">
+        <span class="slang">
+            Medical informatics 1st year
+        </span>
+    </div>
+    <script src="{{ url_for('static' , filename = 'Js/jquery-3.5.1.js') }}"></script>
+    <script src="{{ url_for('static' , filename = 'Js/popper.js') }}"></script>
+    <script src="{{ url_for('static' , filename = 'Js/bootstrap.js') }}"></script>
+</body>
+</html>

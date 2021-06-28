@@ -1,0 +1,7 @@
+body{
+    background-color: #159CC7;
+    display: flex;
+}
+.card{
+    margin: auto;
+}
