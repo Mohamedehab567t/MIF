@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, redirect, request, flash, session
-from forms import EmailForm, VoteForm
-from DB import Student, SaveVote, VoteC
-from functions import calcAgree , calcDisAgree
+from forms import EmailForm, VoteForm,Qform
+from DB import Student, SaveVote, VoteC,SaveComments
+from functions import calcAgree
 
 app = Flask(__name__)
 
@@ -38,7 +38,16 @@ def vote():
     NumOFDisAgrees = len(all) - NumOFAgrees
     if NumOFDisAgrees < 0:
         NumOFDisAgrees = 0
-    return render_template('vote.html', name=name, form=form , d = NumOFDisAgrees , a = NumOFAgrees , user = VotedUser)
+    qform = Qform()
+    if qform.validate_on_submit():
+        SaveComments(qform.question.data,name)
+        flash('رسالتك وصلت')
+    if form.errors:
+        for errorfield in form.errors:
+            for errorM in form[errorfield].errors:
+                flash(errorM, 'danger')
+                print(errorM)
+    return render_template('vote.html', name=name, form=form , d = NumOFDisAgrees , a = NumOFAgrees , user = VotedUser,qform=qform)
 
 
 @app.route('/data', methods=['POST', 'GET'])
