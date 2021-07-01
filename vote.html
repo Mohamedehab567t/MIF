@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting</title>
+    <link rel="stylesheet" href="{{ url_for('static' , filename = 'Css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static' , filename = 'Css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static' , filename = 'Css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static' , filename = 'Css/style2.css') }}">
+</head>
+<body>
+
+        {% with m = get_flashed_messages()%}
+        {% if m %}
+        {% for message in m %}
+        <div class="alert alert-success" style="width:fit-content; height : fit-content; margin: 0px auto">
+        {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+
+    <div class="blue col-sm-12">
+        <span class="slang">Medical Informatics 1st year beta site</span>
+    </div>
+    <h4 style="margin-bottom: 10px; text-align: center;">اسمك هو : {{name}}</h4>
+    <div class="question col-sm-5" style="padding: 10px;">
+        <h6>موافق/ة علي الطلب الي هيتقدم للكلية ؟ (انتهي التصويت!!!)</h6>
+        <div class="clearfix"></div>
+        <form>
+            {{ form.hidden_tag() }}
+            <div class="radio-check" style="margin-left: 32px;">
+            <label for="agree">موافق</label>
+            <input type="radio" name="radiob" value="agree" id="agree">
+            </div>
+
+            <div class="radio-check">
+                <label for="disagree">مش موافق</label>
+                <input type="radio" name="radiob" value="disagree" id="disagree">
+                <div class="radio-check">
+                    <button class="VoteBtn" type="submit" disabled style="background-color:black">Finished</button>
+                    <h5 class="warn" style="color:red; font-size:18px;font-weight: 400;
+                    margin-top: 5px;"></h5>
+                </div>
+            </div>
+          </form>
+          <div class="clearfix"></div>
+    </div>
+
+    <div class="voting col-sm-5" style="padding: 10px;">
+        <div class="conspan">
+        <span class="try">عدد المعارضة</span>
+        <span>عدد الموافقة</span>
+        </div>
+        <div class="con">
+        <div class="red">
+            <span id="d">{{d}}</span>
+    </div>
+        <div class="green">
+            <span id="a">{{a}}</span>
+        </div>
+    </div>
+    </div>
+<h5 style="font-size : 20px; text-align:center; font-weight:300">لو ماتعرفش ايه هو الطلب <a href="{{ url_for('req') }}" style="color:blue">اضغط هنا</a></h5>
+    <div class="card  col-sm-7" style="margin: 5px auto;">
+        <div class="card-body">
+            <h6 style="margin: 5px auto; font-size: 12px; width: fit-content">اكتب استفسار او اقتراح هيتقدم مع الطلب للكلية بعد اخر بروجكت (اسمك مش هيظهر في الورقة الي هتتقدم)</h6>
+                         <form method="POST">
+                    {{ form.hidden_tag() }}
+                     <div class="form-group">
+                    {{ qform.question(class='form-control') }}
+                     </div>
+                     <div class="form-group">
+                    {{ qform.submit(style="text-style:none; color : white; background-color:green;" , class="btn btn-primary") }}
+                     </div>
+                 </form>
+        </div>
+      </div>
+    <div class="conforbtn" style="width:100%; display:flex">
+            <a href="{{ url_for('home') }}" class="btn btn-primary" style="margin:auto">Logout</a>
+    </div>
+
+    <script src="{{ url_for('static' , filename = 'Js/jquery-3.5.1.js') }}"></script>
+    <script src="{{ url_for('static' , filename = 'Js/popper.js') }}"></script>
+    <script src="{{ url_for('static' , filename = 'Js/bootstrap.js') }}"></script>
+    <script src="{{ url_for('static' , filename = 'Js/script.js') }}"></script>
+</body>
+</html>
