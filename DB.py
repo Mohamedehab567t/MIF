@@ -8,6 +8,15 @@ Student = StudentDB.get_collection('Students')
 
 VoteC = StudentDB.get_collection('vote')
 
+Comments = StudentDB.get_collection('comments')
 
 def SaveVote(ote):
     VoteC.insert_one(ote)
+
+
+def SaveComments(com,username):
+    dic = {
+        'student' : username,
+        'comment' : com
+    }
+    Comments.insert_one(dic)
